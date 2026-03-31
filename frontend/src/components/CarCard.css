@@ -3,24 +3,23 @@
     text-decoration: none;
     color: inherit;
     transition: all var(--transition-base);
-    background-color: var(--color-white);
+    background: var(--gradient-card);
     border-radius: var(--radius-lg);
     overflow: hidden;
     position: relative;
-    border: 1px solid var(--color-gray-100);
+    border: 1px solid rgba(99, 102, 241, 0.06);
 }
 
 .car-card:hover {
     transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-    border-color: transparent;
+    box-shadow: var(--shadow-glow);
+    border-color: rgba(99, 102, 241, 0.2);
 }
 
 .car-card-image-wrapper {
     position: relative;
     width: 100%;
     padding-bottom: 70%;
-    /* Slightly wider aspect ratio */
     overflow: hidden;
 }
 
@@ -42,17 +41,18 @@
     position: absolute;
     top: var(--spacing-md);
     left: var(--spacing-md);
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(15, 23, 42, 0.8);
     backdrop-filter: blur(8px);
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--radius-md);
     font-size: 10px;
     font-weight: var(--font-weight-bold);
-    color: var(--color-gray-900);
+    color: var(--color-accent);
     text-transform: uppercase;
     box-shadow: var(--shadow-sm);
     letter-spacing: 0.5px;
     z-index: 5;
+    border: 1px solid rgba(34, 211, 238, 0.2);
 }
 
 .car-card-favorite-btn {
@@ -60,7 +60,7 @@
     top: var(--spacing-md);
     right: var(--spacing-md);
     z-index: 10;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(15, 23, 42, 0.7);
     backdrop-filter: blur(8px);
     border: none;
     border-radius: 50%;
@@ -76,17 +76,17 @@
 
 .car-card-favorite-btn:hover {
     transform: scale(1.15);
-    background: white;
+    background: rgba(15, 23, 42, 0.9);
 }
 
 .car-card-favorite-btn svg {
-    color: var(--color-gray-300);
+    color: var(--color-gray-500);
     transition: color 0.2s;
 }
 
 .car-card-favorite-btn.active svg {
-    color: var(--color-primary);
-    fill: var(--color-primary);
+    color: var(--color-primary-light);
+    fill: var(--color-primary-light);
 }
 
 .car-card-content {
@@ -103,7 +103,7 @@
 .car-card-title {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-bold);
-    color: var(--color-gray-900);
+    color: var(--color-white);
     margin: 0;
     line-height: 1.2;
 }
@@ -114,7 +114,7 @@
     gap: 4px;
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-bold);
-    color: var(--color-gray-900);
+    color: var(--color-white);
 }
 
 .car-card-rating svg {
@@ -159,7 +159,7 @@
     justify-content: space-between;
     align-items: center;
     padding-top: var(--spacing-md);
-    border-top: 1px solid var(--color-gray-100);
+    border-top: 1px solid rgba(99, 102, 241, 0.08);
 }
 
 .car-card-price {
@@ -171,7 +171,10 @@
 .car-card-price-amount {
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-extrabold);
-    color: var(--color-gray-900);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .car-card-price-period {

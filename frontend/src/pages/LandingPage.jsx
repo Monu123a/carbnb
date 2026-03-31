@@ -32,9 +32,9 @@ const LandingPage = () => {
             <section className="hero">
                 <div className="hero-overlay"></div>
                 <div className="hero-content">
-                    <h1 className="hero-title">Rent cars from people <br /> near you</h1>
+                    <h1 className="hero-title">Drive your <span>dream car</span> <br /> today</h1>
                     <p className="hero-subtitle">
-                        The premium peer-to-peer car sharing marketplace. Find the perfect car for your next adventure.
+                        Discover premium vehicles from trusted owners. Book instantly and hit the road in style.
                     </p>
 
                     <div className="hero-search-container">
