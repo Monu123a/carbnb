@@ -1,0 +1,6 @@
+
+> carbnb@1.0.0 start
+> node index.js
+
+[dotenv@17.2.3] injecting env (5) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+🚀 Server running on port 3001
