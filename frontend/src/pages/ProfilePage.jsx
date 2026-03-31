@@ -11,6 +11,10 @@ const ProfilePage = () => {
     const [myCars, setMyCars] = useState([]);
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [aadhaar, setAadhaar] = useState('');
+    const [dl, setDl] = useState('');
+    const [verifying, setVerifying] = useState(false);
+    const [verifyMsg, setVerifyMsg] = useState('');
 
     useEffect(() => {
         fetchProfileData();
@@ -25,6 +29,8 @@ const ProfilePage = () => {
             ]);
 
             setProfile(profileData);
+            setAadhaar(profileData?.aadhaarNumber || '');
+            setDl(profileData?.drivingLicenseNumber || '');
             setMyCars(carsData.cars || []);
             setBookings(bookingsData.bookings || []);
         } catch (error) {
@@ -88,23 +94,20 @@ const ProfilePage = () => {
                                 <p className="verification-hint">
                                     To book cars, you must verify your identity and driving license.
                                 </p>
+                                {verifyMsg && (
+                                    <div className={`verification-msg ${verifyMsg.includes('success') || verifyMsg.includes('submitted') ? 'success' : 'error'}`}>
+                                        {verifyMsg}
+                                    </div>
+                                )}
                                 <div className="verification-form">
                                     <div className="form-group">
                                         <label>Aadhaar Card Number</label>
                                         <input
                                             type="text"
                                             placeholder="Enter 12-digit Aadhaar number"
-                                            defaultValue={profile?.aadhaarNumber || ''}
-                                            onBlur={async (e) => {
-                                                if (e.target.value) {
-                                                    try {
-                                                        await verificationAPI.uploadDocs({ aadhaarNumber: e.target.value });
-                                                        fetchProfileData();
-                                                    } catch (err) {
-                                                        alert('Upload failed: ' + err.message);
-                                                    }
-                                                }
-                                            }}
+                                            value={aadhaar}
+                                            onChange={(e) => setAadhaar(e.target.value)}
+                                            maxLength={12}
                                         />
                                     </div>
                                     <div className="form-group">
@@ -112,36 +115,34 @@ const ProfilePage = () => {
                                         <input
                                             type="text"
                                             placeholder="Enter DL number"
-                                            defaultValue={profile?.drivingLicenseNumber || ''}
-                                            onBlur={async (e) => {
-                                                if (e.target.value) {
-                                                    try {
-                                                        await verificationAPI.uploadDocs({ drivingLicenseNumber: e.target.value });
-                                                        fetchProfileData();
-                                                    } catch (err) {
-                                                        alert('Upload failed: ' + err.message);
-                                                    }
-                                                }
-                                            }}
+                                            value={dl}
+                                            onChange={(e) => setDl(e.target.value)}
                                         />
                                     </div>
                                 </div>
-                                {profile?.aadhaarNumber && !profile?.isVerified && (
-                                    <button
-                                        className="btn btn-primary btn-sm"
-                                        style={{ marginTop: 'var(--spacing-md)' }}
-                                        onClick={async () => {
-                                            try {
-                                                await verificationAPI.verifyUser(profile.id, true);
-                                                fetchProfileData();
-                                            } catch (err) {
-                                                alert('Verification failed: ' + err.message);
-                                            }
-                                        }}
-                                    >
-                                        (Mock) Approve Verification
-                                    </button>
-                                )}
+                                <button
+                                    className="btn btn-primary"
+                                    style={{ marginTop: '1.5rem', width: '100%' }}
+                                    disabled={!aadhaar || !dl || verifying}
+                                    onClick={async () => {
+                                        setVerifying(true);
+                                        setVerifyMsg('');
+                                        try {
+                                            await verificationAPI.uploadDocs({
+                                                aadhaarNumber: aadhaar,
+                                                drivingLicenseNumber: dl
+                                            });
+                                            setVerifyMsg('Documents submitted successfully! Verification is being processed.');
+                                            fetchProfileData();
+                                        } catch (err) {
+                                            setVerifyMsg('Submission failed: ' + err.message);
+                                        } finally {
+                                            setVerifying(false);
+                                        }
+                                    }}
+                                >
+                                    {verifying ? 'Submitting...' : 'Submit for Verification'}
+                                </button>
                             </div>
                         ) : (
                             <div className="verification-success">

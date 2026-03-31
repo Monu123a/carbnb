@@ -42,6 +42,9 @@
 .verification-badge.pending { background-color: rgba(245, 158, 11, 0.15); color: var(--color-warning); }
 .verification-badge.verified { background-color: rgba(16, 185, 129, 0.15); color: var(--color-success); border-bottom: 2px solid var(--color-success); }
 .verification-hint { font-size: var(--font-size-sm); color: var(--color-gray-700); margin-bottom: var(--spacing-lg); }
+.verification-msg { padding: var(--spacing-md); border-radius: var(--radius-md); font-size: var(--font-size-sm); margin-bottom: var(--spacing-lg); text-align: center; font-weight: var(--font-weight-medium); }
+.verification-msg.success { background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: var(--color-success); }
+.verification-msg.error { background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--color-error); }
 .verification-form { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); }
 .verification-form .form-group label { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); color: var(--color-gray-700); margin-bottom: var(--spacing-xs); text-transform: uppercase; }
 .verification-form .form-group input { width: 100%; padding: var(--spacing-sm); border: 1px solid var(--color-bg-tertiary); border-radius: var(--radius-md); font-size: var(--font-size-sm); background: var(--color-bg-secondary); color: var(--color-white); }
