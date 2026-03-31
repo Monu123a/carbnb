@@ -143,6 +143,23 @@ const ProfilePage = () => {
                                 >
                                     {verifying ? 'Submitting...' : 'Submit for Verification'}
                                 </button>
+                                {aadhaar && dl && !profile?.isVerified && (
+                                    <button
+                                        className="btn btn-secondary btn-sm"
+                                        style={{ marginTop: '1rem', width: '100%', fontSize: '0.8rem', opacity: '0.7' }}
+                                        onClick={async () => {
+                                            try {
+                                                await verificationAPI.verifyUser(profile._id || profile.id, true);
+                                                fetchProfileData();
+                                                alert("Developer Backdoor: Identity Approved!");
+                                            } catch (err) {
+                                                alert('Verification failed: ' + err.message);
+                                            }
+                                        }}
+                                    >
+                                        [Dev Test] Force Approve Verification
+                                    </button>
+                                )}
                             </div>
                         ) : (
                             <div className="verification-success">
