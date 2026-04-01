@@ -1,4 +1,5 @@
-.write-review-page { padding: var(--spacing-2xl) 0; min-height: calc(100vh - 80px); background-color: var(--color-bg-primary); }
-.write-review-page .container { max-width: 700px; }
-.write-review-page h1 { text-align: center; color: var(--color-white); }
-.review-form-card { background: var(--gradient-card); border: 1px solid rgba(99, 102, 241, 0.08); border-radius: var(--radius-xl); padding: var(--spacing-2xl); box-shadow: var(--shadow-md); }
+.write-review-page {
+    padding: var(--spacing-2xl) 0;
+    min-height: calc(100vh - 80px);
+    background-color: var(--color-bg-primary);
+}

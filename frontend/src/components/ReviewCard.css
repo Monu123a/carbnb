@@ -1,9 +1,75 @@
-.review-card { background: var(--color-bg-secondary); border: 1px solid rgba(99, 102, 241, 0.06); border-radius: var(--radius-lg); padding: var(--spacing-lg); margin-bottom: var(--spacing-md); }
-.review-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md); }
-.review-user { display: flex; align-items: center; gap: var(--spacing-sm); }
-.review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--gradient-primary); color: var(--color-white); display: flex; align-items: center; justify-content: center; font-weight: var(--font-weight-bold); font-size: var(--font-size-sm); }
-.review-user-name { font-weight: var(--font-weight-semibold); color: var(--color-white); }
-.review-date { font-size: var(--font-size-xs); color: var(--color-gray-500); }
-.review-rating { display: flex; gap: 2px; }
-.review-rating svg { color: var(--color-warning); }
-.review-comment { color: var(--color-gray-700); font-size: var(--font-size-sm); line-height: 1.6; margin: 0; }
+.review-card {
+    background: var(--color-white);
+    border: var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.review-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-light);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-md);
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.reviewer-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-lg);
+    font-weight: 800;
+}
+
+.reviewer-details h4 {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 2px 0;
+}
+
+.review-date {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    margin: 0;
+}
+
+.review-rating {
+    display: flex;
+    gap: 2px;
+}
+
+.review-rating svg {
+    color: var(--color-bg-tertiary);
+    width: 16px;
+    height: 16px;
+}
+
+.review-rating svg.filled {
+    color: var(--color-warning);
+}
+
+.review-text {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
