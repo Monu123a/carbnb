@@ -107,10 +107,9 @@ const ProfilePage = () => {
                                         <label>Aadhaar Card Number</label>
                                         <input
                                             type="text"
-                                            placeholder="Enter 12-digit Aadhaar number"
+                                            placeholder="Enter Aadhaar number"
                                             value={aadhaar}
-                                            onChange={(e) => setAadhaar(e.target.value.replace(/\D/g, ''))}
-                                            maxLength={12}
+                                            onChange={(e) => setAadhaar(e.target.value)}
                                         />
                                     </div>
                                     <div className="form-group">
@@ -126,7 +125,7 @@ const ProfilePage = () => {
                                 <button
                                     className="btn btn-primary"
                                     style={{ marginTop: '1.5rem', width: '100%' }}
-                                    disabled={!aadhaar || aadhaar.length !== 12 || !dl || dl.trim().length < 5 || verifying}
+                                    disabled={!aadhaar || !dl || verifying}
                                     onClick={async () => {
                                         setVerifying(true);
                                         setVerifyMsg('');
