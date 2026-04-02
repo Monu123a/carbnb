@@ -84,8 +84,8 @@ const ProfilePage = () => {
                     <div className="profile-section verification-section">
                         <div className="section-header">
                             <h2>Identity Verification</h2>
-                            <span className={`verification-badge ${profile?.isVerified ? 'verified' : (profile?.aadhaarNumber ? 'pending' : 'unverified')}`}>
-                                {profile?.isVerified ? 'Verified' : (profile?.aadhaarNumber ? 'Pending Review' : 'Unverified')}
+                            <span className={`verification-badge ${profile?.isVerified ? 'verified' : 'unverified'}`}>
+                                {profile?.isVerified ? 'Verified' : 'Unverified'}
                             </span>
                         </div>
 
@@ -95,7 +95,7 @@ const ProfilePage = () => {
                                     To book cars, you must verify your identity and driving license.
                                 </p>
                                 {verifyMsg && (
-                                    <div className={`verification-msg ${verifyMsg.includes('success') || verifyMsg.includes('submitted') ? 'success' : 'error'}`}>
+                                    <div className={`verification-msg ${verifyMsg.includes('Verified') || verifyMsg.includes('success') ? 'success' : 'error'}`}>
                                         {verifyMsg}
                                     </div>
                                 )}
@@ -106,7 +106,7 @@ const ProfilePage = () => {
                                             type="text"
                                             placeholder="Enter 12-digit Aadhaar number"
                                             value={aadhaar}
-                                            onChange={(e) => setAadhaar(e.target.value)}
+                                            onChange={(e) => setAadhaar(e.target.value.replace(/\D/g, ''))}
                                             maxLength={12}
                                         />
                                     </div>
@@ -123,16 +123,20 @@ const ProfilePage = () => {
                                 <button
                                     className="btn btn-primary"
                                     style={{ marginTop: '1.5rem', width: '100%' }}
-                                    disabled={!aadhaar || !dl || verifying}
+                                    disabled={!aadhaar || aadhaar.length !== 12 || !dl || dl.trim().length < 5 || verifying}
                                     onClick={async () => {
                                         setVerifying(true);
                                         setVerifyMsg('');
                                         try {
-                                            await verificationAPI.uploadDocs({
+                                            const result = await verificationAPI.uploadDocs({
                                                 aadhaarNumber: aadhaar,
                                                 drivingLicenseNumber: dl
                                             });
-                                            setVerifyMsg('Documents submitted successfully! Verification is being processed.');
+                                            if (result.isVerified) {
+                                                setVerifyMsg('✅ Verified successfully! You can now book cars.');
+                                            } else {
+                                                setVerifyMsg('Documents submitted successfully!');
+                                            }
                                             fetchProfileData();
                                         } catch (err) {
                                             setVerifyMsg('Submission failed: ' + err.message);
@@ -141,25 +145,8 @@ const ProfilePage = () => {
                                         }
                                     }}
                                 >
-                                    {verifying ? 'Submitting...' : 'Submit for Verification'}
+                                    {verifying ? 'Verifying...' : 'Verify Now'}
                                 </button>
-                                {aadhaar && dl && !profile?.isVerified && (
-                                    <button
-                                        className="btn btn-secondary btn-sm"
-                                        style={{ marginTop: '1rem', width: '100%', fontSize: '0.8rem', opacity: '0.7' }}
-                                        onClick={async () => {
-                                            try {
-                                                await verificationAPI.verifyUser(profile._id || profile.id, true);
-                                                fetchProfileData();
-                                                alert("Developer Backdoor: Identity Approved!");
-                                            } catch (err) {
-                                                alert('Verification failed: ' + err.message);
-                                            }
-                                        }}
-                                    >
-                                        [Dev Test] Force Approve Verification
-                                    </button>
-                                )}
                             </div>
                         ) : (
                             <div className="verification-success">
