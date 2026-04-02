@@ -6,7 +6,7 @@ import { getFullImageUrl } from '../utils/urlUtils';
 import './ProfilePage.css';
 
 const ProfilePage = () => {
-    const { user } = useAuth();
+    const { user, updateUser } = useAuth();
     const [profile, setProfile] = useState(null);
     const [myCars, setMyCars] = useState([]);
     const [bookings, setBookings] = useState([]);
@@ -29,6 +29,9 @@ const ProfilePage = () => {
             ]);
 
             setProfile(profileData);
+            if (typeof updateUser === 'function') {
+                updateUser(profileData);
+            }
             setAadhaar(profileData?.aadhaarNumber || '');
             setDl(profileData?.drivingLicenseNumber || '');
             setMyCars(carsData.cars || []);
