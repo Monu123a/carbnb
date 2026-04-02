@@ -35,6 +35,9 @@ exports.register = async (data) => {
       email: true,
       phone: true,
       image: true,
+      isVerified: true,
+      aadhaarNumber: true,
+      drivingLicenseNumber: true,
       createdAt: true,
     },
   });
@@ -109,6 +112,9 @@ exports.getUserById = async (userId) => {
       email: true,
       phone: true,
       image: true,
+      isVerified: true,
+      aadhaarNumber: true,
+      drivingLicenseNumber: true,
       createdAt: true,
     },
   });
@@ -132,6 +138,9 @@ exports.updateUserProfile = async (userId, data) => {
       email: true,
       phone: true,
       image: true,
+      isVerified: true,
+      aadhaarNumber: true,
+      drivingLicenseNumber: true,
       createdAt: true,
     },
   });
