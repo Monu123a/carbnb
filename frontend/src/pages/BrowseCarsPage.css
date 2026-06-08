@@ -1,7 +1,6 @@
 .browse-page {
     padding: var(--spacing-2xl) 0;
     min-height: calc(100vh - 80px);
-    background-color: var(--color-bg-primary);
 }
 
 .browse-layout {
@@ -15,8 +14,8 @@
     position: sticky;
     top: 100px;
     height: fit-content;
-    background: var(--gradient-card);
-    border: 1px solid rgba(99, 102, 241, 0.08);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
 }
@@ -27,35 +26,38 @@
     align-items: center;
     margin-bottom: var(--spacing-lg);
     padding-bottom: var(--spacing-md);
-    border-bottom: 1px solid var(--color-bg-tertiary);
+    border-bottom: 1px solid var(--color-gray-200);
 }
 
 .filters-header h3 {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-white);
     margin: 0;
 }
 
 .filters-clear {
     background: none;
     border: none;
-    color: var(--color-primary-light);
+    color: var(--color-primary);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
     cursor: pointer;
     text-decoration: underline;
 }
 
-.filters-clear:hover { color: var(--color-accent); }
+.filters-clear:hover {
+    color: var(--color-primary-dark);
+}
 
-.filter-group { margin-bottom: var(--spacing-lg); }
+.filter-group {
+    margin-bottom: var(--spacing-lg);
+}
 
 .filter-label {
     display: block;
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-gray-800);
+    color: var(--color-black);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -65,18 +67,26 @@
     gap: var(--spacing-sm);
 }
 
-.price-inputs input { flex: 1; }
-.price-inputs span { color: var(--color-gray-500); }
+.price-inputs input {
+    flex: 1;
+}
+
+.price-inputs span {
+    color: var(--color-gray-500);
+}
 
 /* Browse Content */
-.browse-content { min-height: 400px; }
+.browse-content {
+    min-height: 400px;
+}
 
-.browse-header { margin-bottom: var(--spacing-xl); }
+.browse-header {
+    margin-bottom: var(--spacing-xl);
+}
 
 .browse-title {
     font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-bold);
-    color: var(--color-white);
     margin-bottom: var(--spacing-xs);
 }
 
@@ -94,15 +104,20 @@
 
 .skeleton-card {
     height: 350px;
-    background: linear-gradient(90deg, var(--color-bg-secondary) 25%, var(--color-bg-tertiary) 50%, var(--color-bg-secondary) 75%);
+    background: linear-gradient(90deg, var(--color-gray-200) 25%, var(--color-gray-100) 50%, var(--color-gray-200) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
     border-radius: var(--radius-lg);
 }
 
 @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 .no-results {
@@ -110,17 +125,40 @@
     padding: var(--spacing-3xl);
 }
 
-.no-results svg { color: var(--color-gray-500); margin-bottom: var(--spacing-lg); }
-.no-results h3 { font-size: var(--font-size-2xl); font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-sm); color: var(--color-white); }
-.no-results p { color: var(--color-gray-700); margin-bottom: var(--spacing-xl); }
+.no-results svg {
+    color: var(--color-gray-500);
+    margin-bottom: var(--spacing-lg);
+}
+
+.no-results h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.no-results p {
+    color: var(--color-gray-700);
+    margin-bottom: var(--spacing-xl);
+}
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .browse-layout { grid-template-columns: 1fr; }
-    .filters-sidebar { position: static; margin-bottom: var(--spacing-xl); }
+    .browse-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-sidebar {
+        position: static;
+        margin-bottom: var(--spacing-xl);
+    }
 }
 
 @media (max-width: 768px) {
-    .cars-grid { grid-template-columns: 1fr; }
-    .browse-title { font-size: var(--font-size-2xl); }
+    .cars-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .browse-title {
+        font-size: var(--font-size-2xl);
+    }
 }
