@@ -6,6 +6,7 @@ exports.uploadVerificationDocs = async (userId, data) => {
 
     // Auto-verify as long as both fields are provided
     const shouldVerify = !!(aadhaarNumber && drivingLicenseNumber);
+    console.log(aadhaarNumber,drivingLicenseNumber)
 
     return prisma.user.update({
         where: { id: Number(userId) },
